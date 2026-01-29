@@ -1,4 +1,4 @@
-import type { IProduct } from '../../types/api';
+import type { IProduct } from '~/types/api';
 
 export default defineEventHandler(async (event): Promise<IProduct[]> => {
   const query = getQuery(event);

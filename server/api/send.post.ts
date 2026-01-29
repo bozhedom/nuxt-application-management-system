@@ -1,11 +1,9 @@
-export default defineEventHandler(async (event) => {
+import type { IProduct } from "~/types/api";
+
+export default defineEventHandler(async (event): Promise<{ success: boolean }> => {
   const body = await readBody<{
     id: number;
-    products: {
-      id: number;
-      name: string;
-      price: number;
-    }[];
+    products: IProduct[];
   }>(event);
 
   if (!body?.id || !Array.isArray(body.products)) {
