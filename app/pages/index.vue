@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.container">
+  <div class="container" :class="$style.container">
     <h1>Список заявок</h1>
     <table :class="$style.table">
       <thead>
@@ -38,6 +38,10 @@
 </template>
 
 <script setup lang="ts">
+// definePageMeta({
+//   layout: 'nav-menu',
+// });
+
 const { applications } = await useApplications();
 const { get } = useLocalStorage();
 const storageVersion = ref(0);

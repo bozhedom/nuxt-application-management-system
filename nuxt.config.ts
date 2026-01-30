@@ -4,4 +4,5 @@ export default defineNuxtConfig({
   modules: [],
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  css: ['~/assets/styles/globals.scss'],
 });

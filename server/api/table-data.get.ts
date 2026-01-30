@@ -1,5 +1,3 @@
-import type { IApplication } from '~/types/api';
-
 export default defineEventHandler(async (): Promise<IApplication[]> => {
   const applications: IApplication[] = [
     {

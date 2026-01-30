@@ -1,11 +1,9 @@
-import type { IProduct } from '~/types/api';
-
 export const useProductsCached = async (
   id: Ref<number | null>,
   products: Ref<IProduct[]>,
   loadFromServer: () => Promise<void>,
 ) => {
-  const { get, set } = await useLocalStorage();
+  const { get, set } = useLocalStorage();
 
   const load = async () => {
     if (!id.value) return;
@@ -25,4 +23,4 @@ export const useProductsCached = async (
   };
 
   return { load };
-}
+};
