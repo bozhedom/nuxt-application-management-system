@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.actions">
-    <NuxtLink :to="`/edit?id=${id}`">
+    <NuxtLink :to="`/edit?id=${id}`" v-if="!isReady">
       <Button title="Редактировать" hierarchy="tertiary" size="small" />
     </NuxtLink>
 
@@ -33,5 +33,6 @@ const onSend = () => {
 .actions {
   display: flex;
   gap: 20px;
+  flex-direction: column;
 }
 </style>

@@ -1,7 +1,7 @@
 export interface IButtonProps {
-  title: string;
+  title?: string;
   disabled?: boolean;
-  hierarchy: 'primary' | 'tertiary';
-  size: 'small' | 'medium';
+  hierarchy: 'primary' | 'tertiary' | 'secondary';
+  size: 'small' | 'medium' ;
   onClick?: () => void;
 }

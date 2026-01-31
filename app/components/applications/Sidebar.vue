@@ -1,13 +1,33 @@
 <template>
   <aside :class="[$style.sidebar, collapsed && $style.collapsed]">
-    <button :class="$style.toggle" @click="toggle">
-      {{ collapsed ? '→' : '←' }}
-    </button>
+    <Button
+      :class="$style.button"
+      hierarchy="secondary"
+      size="small"
+      @click="toggle"
+    >
+      <img
+        :class="[$style.chevron, !collapsed && $style.rotated]"
+        src="~/assets/icons/chevron-right.svg"
+        alt="toggle"
+      />
+    </Button>
 
-    <nav v-if="!collapsed">
+    <nav>
       <ul>
         <li>
-          <NuxtLink to="/">Заявки</NuxtLink>
+          <Button
+            :class="
+              collapsed ? $style['button-nav'] : $style['button-nav-expanded']
+            "
+            hierarchy="secondary"
+            size="small"
+            title=""
+          >
+            <img src="~/assets/icons/icon.svg" alt="menu" />
+
+            <span v-if="!collapsed" :class="[$style.label]"> Заявки </span>
+          </Button>
         </li>
       </ul>
     </nav>
@@ -15,7 +35,10 @@
 </template>
 
 <script setup lang="ts">
-const collapsed = ref(false);
+import { ref } from 'vue';
+import Button from '../ui/Button/Button.vue';
+
+const collapsed = ref(true);
 
 const toggle = () => {
   collapsed.value = !collapsed.value;
@@ -24,15 +47,31 @@ const toggle = () => {
 
 <style module lang="scss" scoped>
 .sidebar {
-  width: 220px;
-  background: #1f2937;
-  color: white;
-  padding: 16px;
+  width: 280px;
+  background: white;
   transition: width 0.2s ease;
+  border-radius: 16px;
+  margin: 24px 12px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  transition:
+    width 0.55s ease,
+    transform 0.55s ease;
 }
 
 .collapsed {
-  width: 60px;
+  width: 68px;
+  transform: translateX(-4px);
+}
+
+.chevron {
+  transition: transform 0.35s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
 }
 
 .toggle {
@@ -43,8 +82,41 @@ const toggle = () => {
   margin-bottom: 16px;
 }
 
-a {
-  color: white;
-  text-decoration: none;
+.label {
+  font-size: 16px;
+  font-weight: 400;
+  color: #fc8507;
+}
+
+.button {
+  margin: 16px;
+  margin-left: auto;
+}
+
+.button-nav {
+  background-color: #fff7dab2;
+
+  &:not(:disabled):hover {
+    background-color: #ffefc2;
+  }
+}
+
+.button-nav-expanded {
+  background-color: white;
+  display: flex;
+  gap: 12px;
+
+  &:not(:disabled):hover {
+    background-color: #ffefc2;
+  }
+}
+
+ul li {
+  margin: 14px;
+  list-style: none;
+}
+
+ul {
+  border-left: 2px solid #fc8507;
 }
 </style>

@@ -2,13 +2,7 @@ export interface IApplication {
   id: number;
   number: string;
   status: StatusOption;
-  verificationResult:
-    | 'in_progress'
-    | 'passed'
-    | 'failed'
-    | 'requires_review'
-    | 'on_hold'
-    | 'expired';
+  verificationResult: VerificationResultOption;
   createdAt: string;
 }
 
@@ -28,6 +22,14 @@ export type StatusOption =
   | 'completed'
   | 'cancelled'
   | 'draft';
+
+export type VerificationResultOption =
+  | 'in_progress'
+  | 'passed'
+  | 'failed'
+  | 'requires_review'
+  | 'on_hold'
+  | 'expired';
 
 export type ColorOption = 'red' | 'blue' | 'green' | 'yellow' | 'black';
 

@@ -4,7 +4,9 @@
     :disabled="disabled"
     @click="onClick"
   >
-    {{ title }}
+    <slot>
+      {{ title }}
+    </slot>
   </button>
 </template>
 
@@ -57,6 +59,19 @@ const { title, hierarchy, disabled, onClick, size } =
   color: #333333;
   &:not(:disabled):hover {
     background-color: #f5f5f5;
+  }
+}
+
+.secondary {
+  background-color: #f7f7f7;
+  color: #a7a5a5;
+  padding: 0;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  padding: 8px;
+  &:not(:disabled):hover {
+    background-color: #eeebeb;
   }
 }
 </style>
