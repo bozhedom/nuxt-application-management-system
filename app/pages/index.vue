@@ -1,6 +1,6 @@
 <template>
   <div class="container" :class="$style.container">
-    <h1>Список заявок</h1>
+    <h1>Заявки</h1>
     <table :class="$style.table">
       <thead>
         <tr>
@@ -16,20 +16,20 @@
         <tr v-for="application in applications" :key="application.id">
           <td>{{ application.id }}</td>
           <td>{{ application.number }}</td>
-          <td>{{ application.status }}</td>
+          <td>
+            <UiStatusBadge
+              :status="getStatus(application.id)"
+              :title="getStatusLabel(getStatus(application.id))"
+            />
+          </td>
           <td>{{ application.verificationResult }}</td>
           <td>{{ application.createdAt }}</td>
           <td>
-            <NuxtLink :to="`/edit?id=${application.id}`">
-              <button>Редактировать</button>
-            </NuxtLink>
-
-            <button
-              v-if="readyApplications.has(application.id)"
-              @click="send(application.id)"
-            >
-              Отправить
-            </button>
+            <ApplicationsActions
+              :id="application.id"
+              :is-ready="readySet.has(application.id)"
+              @send="send"
+            />
           </td>
         </tr>
       </tbody>
@@ -43,26 +43,23 @@
 // });
 
 const { applications } = await useApplications();
-const { get } = useLocalStorage();
-const storageVersion = ref(0);
+const { readySet, send } = useApplicationActions(applications);
+// const {get} = useLocalStorage()
 
-const readyApplications = computed(() => {
-  if (!import.meta.client) return new Set<number>();
-  storageVersion.value;
-  const set = new Set<number>();
+// if (applications.value && applications.value[1]) {
+//   if (get(`application-${applications.value[1].id}`, null)) {
+//     applications.value[1].status = 'draft';
+//   } else {
+//     applications.value[1].status = 'completed';
+//   }
+// }
 
-  for (const app of applications.value) {
-    if (get(`application-${app.id}`, null)) {
-      set.add(app.id);
-    }
-  }
+const { getStatus } = useApplicationStatus(applications);
+console.log(getStatus(1));
+console.log(getStatus(2));
+console.log(getStatus(3));
 
-  return set;
-});
 
-const { send } = await useSendApplication(() => {
-  storageVersion.value++;
-});
 </script>
 
 <style lang="scss" module>

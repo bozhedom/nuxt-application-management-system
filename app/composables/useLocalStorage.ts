@@ -12,7 +12,7 @@ export const useLocalStorage = () => {
     }
   };
 
-  const set = (key: string, value: object) => {
+  const set = (key: string, value: object | boolean) => {
     if (!import.meta.client) return;
 
     localStorage.setItem(key, JSON.stringify(value));

@@ -1,14 +1,7 @@
 export interface IApplication {
   id: number;
   number: string;
-  status:
-    | 'active'
-    | 'pending'
-    | 'approved'
-    | 'rejected'
-    | 'completed'
-    | 'cancelled'
-    | 'draft';
+  status: StatusOption;
   verificationResult:
     | 'in_progress'
     | 'passed'
@@ -26,6 +19,15 @@ export interface IProduct {
   price: number;
   color: ColorOption;
 }
+
+export type StatusOption =
+  | 'active'
+  | 'pending'
+  | 'approved'
+  | 'rejected'
+  | 'completed'
+  | 'cancelled'
+  | 'draft';
 
 export type ColorOption = 'red' | 'blue' | 'green' | 'yellow' | 'black';
 
