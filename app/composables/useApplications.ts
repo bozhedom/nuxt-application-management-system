@@ -1,5 +1,3 @@
-import type { IApplication } from '~/types/api';
-
 export const useApplications = async () => {
   const applications = ref<IApplication[]>([]);
   const error = ref<Error | null>(null);

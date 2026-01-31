@@ -1,5 +1,3 @@
-import type { IProduct } from '~/types/api';
-
 export const useProducts = async (id: Ref<number | null>) => {
   const products = ref<IProduct[]>([]);
   const loading = ref(false);

@@ -1,78 +1,39 @@
 <template>
   <div :class="$style.container">
-    <h1>Список заявок</h1>
-    <table :class="$style.table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Название</th>
-          <th>Статус</th>
-          <th>Результат</th>
-          <th>Дата</th>
-          <th>Действие</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="application in applications" :key="application.id">
-          <td>{{ application.id }}</td>
-          <td>{{ application.number }}</td>
-          <td>{{ application.status }}</td>
-          <td>{{ application.verificationResult }}</td>
-          <td>{{ application.createdAt }}</td>
-          <td>
-            <NuxtLink :to="`/edit?id=${application.id}`">
-              <button>Редактировать</button>
-            </NuxtLink>
-
-            <button
-              v-if="readyApplications.has(application.id)"
-              @click="send(application.id)"
-            >
-              Отправить
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <h1 :class="$style['main-header']">Заявки</h1>
+    <div :class="$style['table-container']">
+      <ApplicationsTable
+        :applications="applications"
+        :ready-applications="readySet"
+        @send="send"
+      />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: 'nav-menu',
+});
+
 const { applications } = await useApplications();
-const { get } = useLocalStorage();
-const storageVersion = ref(0);
-
-const readyApplications = computed(() => {
-  if (!import.meta.client) return new Set<number>();
-  storageVersion.value;
-  const set = new Set<number>();
-
-  for (const app of applications.value) {
-    if (get(`application-${app.id}`, null)) {
-      set.add(app.id);
-    }
-  }
-
-  return set;
-});
-
-const { send } = await useSendApplication(() => {
-  storageVersion.value++;
-});
+const { readySet, send } = useApplicationActions(applications);
 </script>
 
 <style lang="scss" module>
 .container {
-  padding: 20px;
+  background-color: white;
+  border-radius: 16px;
+  height: 100%;
 }
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  th,
-  td {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: left;
-  }
+.table-container {
+  padding: 24px;
+}
+.main-header {
+  color: #333333;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 19px 0 19px 24px;
+  border-bottom: 1px solid #eeeeee;
 }
 </style>

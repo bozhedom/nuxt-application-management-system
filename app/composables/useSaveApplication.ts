@@ -1,5 +1,4 @@
 import type { Ref } from 'vue';
-import type { IProduct } from '~/types/api';
 
 export const useSaveApplication = async (
   id: Ref<number | null>,

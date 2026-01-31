@@ -1,5 +1,3 @@
-import type { IProduct } from '~/types/api';
-
 export default defineEventHandler(async (event): Promise<IProduct[]> => {
   const query = getQuery(event);
   const id = query.id;
