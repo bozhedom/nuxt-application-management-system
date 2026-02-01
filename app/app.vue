@@ -9,8 +9,10 @@
 <script setup></script>
 <style lang="scss" module>
 .layout {
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   min-height: 100vh;
-  // padding-top: 1px;
+  padding: 24px 20px;
+  display: flex;
+  gap: 12px;
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
-  <div :class="$style.layout">
-    <ApplicationsSidebar />
-    <main :class="$style.content">
+
+  <ApplicationsSidebar />
+  <!-- <main :class="$style.content">
       <slot />
-    </main>
-  </div>
+    </main> -->
+  <slot />
 </template>
 
 <script setup lang="ts"></script>
@@ -14,6 +14,7 @@
   display: flex;
   min-height: 100vh;
   height: 100%;
+  gap: 12px;
 }
 
 .content {

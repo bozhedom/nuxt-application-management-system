@@ -11,12 +11,9 @@ export function useApplicationStatus(applications: Ref<IApplication[]>) {
 
     for (const app of applications.value) {
       const hasDraft = Boolean(get(`application-${app.id}`, null));
-      const wasTouched = Boolean(get(`application-${app.id}-touched`, null));
 
       if (hasDraft) {
         map.set(app.id, 'draft');
-      } else if (wasTouched) {
-        map.set(app.id, 'completed');
       } else {
         map.set(app.id, app.status);
       }
