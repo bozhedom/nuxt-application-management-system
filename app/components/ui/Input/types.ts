@@ -1,4 +1,5 @@
 export interface IInputProps {
-  modelValue: string | number;
+  value?: string;
+  placeholder?: string;
   error?: boolean;
 }

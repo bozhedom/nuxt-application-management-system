@@ -20,7 +20,6 @@
   border-spacing: 0;
   border: 1px solid #eeeeee;
   border-radius: 16px;
-  overflow: hidden;
   table-layout: auto;
 }
 

@@ -37,7 +37,7 @@
 </template>
 
 <script setup lang="ts">
-import Table from '~/components/Table/Table.vue';
+import Table from '~/components/BaseTable/Table.vue';
 
 const { applications } = await useApplications();
 const { readySet, send } = useApplicationActions(applications);

@@ -9,8 +9,8 @@ export interface IApplication {
 export interface IProduct {
   id: number;
   name: string;
-  quantity: number;
-  price: number;
+  quantity: number | string;
+  price: number | string;
   color: ColorOption;
 }
 
@@ -31,7 +31,12 @@ export type VerificationResultOption =
   | 'on_hold'
   | 'expired';
 
-export type ColorOption = 'red' | 'blue' | 'green' | 'yellow' | 'black';
+export type ColorOption =
+  | 'Красный'
+  | 'Голубой'
+  | 'Зеленый'
+  | 'Желтый'
+  | 'Черный';
 
 export interface SaveApplicationPayload {
   id: number;
@@ -41,3 +46,9 @@ export interface SaveApplicationPayload {
 export interface SaveResponse {
   success: boolean;
 }
+
+export type FieldErrors = {
+  quantity?: boolean;
+  price?: boolean;
+  color?: boolean;
+};

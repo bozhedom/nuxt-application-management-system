@@ -12,7 +12,7 @@ export default defineEventHandler(
       });
     }
 
-    console.log('SAVE APPLICATION', body);
+    console.log('SEND APPLICATION', body);
 
     return { success: true };
   },

@@ -1,5 +1,6 @@
 export interface ISelectProps {
-  modelValue: string;
-  options: string[];
+  modelValue: string | '';
+  options: ColorOption[];
+  placeholder?: string;
   error?: boolean;
 }
