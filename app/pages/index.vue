@@ -1,16 +1,16 @@
 <template>
   <div :class="$style.container">
-    <ProductsHeader />
-    
+    <h1 :class="$style['main-header']">Заявки</h1>
     <div :class="$style['table-container']">
-      <ProductsTable />
+      <ApplicationsTable />
     </div>
-  
   </div>
 </template>
 
 <script setup lang="ts">
-
+definePageMeta({
+  layout: 'nav-menu',
+});
 </script>
 
 <style lang="scss" module>
@@ -24,4 +24,13 @@
 .table-container {
   padding: 24px;
 }
+
+.main-header {
+  color: #333333;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 19px 0 19px 24px;
+  border-bottom: 1px solid #eeeeee;
+}
+
 </style>

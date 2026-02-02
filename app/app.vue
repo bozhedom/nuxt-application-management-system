@@ -1,13 +1,18 @@
 <template>
-  <div>
-    <h1>1213</h1>
-    {{ data.message }}
-
-    <NuxtPage />
+  <div class="container" :class="$style.layout">
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>
 
-<script setup>
-  const { data } = await useFetch('/api/example')
-</script>
-<style lang='scss' scoped></style>
+<script setup></script>
+<style lang="scss" module>
+.layout {
+  background-color: #f7f7f7;
+  min-height: 100vh;
+  padding: 24px 20px;
+  display: flex;
+  gap: 12px;
+}
+</style>
