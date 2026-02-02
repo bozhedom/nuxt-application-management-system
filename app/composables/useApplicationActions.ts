@@ -2,7 +2,6 @@ import type { Ref } from 'vue';
 
 export function useApplicationActions(applications: Ref<{ id: number }[]>) {
   const { get, remove } = useLocalStorage();
-  // const storageVersion = ref(0);
   const error = ref<Error | null>(null);
   const { bump, storageVersion } = useApplicationStorageVersion();
 

@@ -1,6 +1,6 @@
-export function useApplicationStorageVersion() {
-  const storageVersion = ref(0);
+const storageVersion = ref(0);
 
+export function useApplicationStorageVersion() {
   const bump = () => {
     storageVersion.value++;
   };
